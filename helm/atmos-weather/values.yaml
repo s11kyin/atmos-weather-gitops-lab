@@ -6,7 +6,7 @@ image:
   pullPolicy: IfNotPresent
 
 imagePullSecret:
-  name: dockerhub-pull-manual
+  name: dockerhub-pull
 
 service:
   type: ClusterIP
