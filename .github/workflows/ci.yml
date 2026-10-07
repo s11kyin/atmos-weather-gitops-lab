@@ -66,16 +66,22 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Update image tag
-        run: sed -i "s|^  tag:.*|  tag: \"sha-${GITHUB_SHA}\"|" helm/atmos-weather/values.yaml
+        run: |
+          sed -i "s|^  tag:.*|  tag: \"sha-${GITHUB_SHA}\"|" helm/atmos-weather/values.yaml
 
       - name: Show desired-state change
         run: git diff -- helm/atmos-weather/values.yaml
 
       - name: Configure Git identity
-        run: git config user.name "github-actions[bot]" && git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Commit desired state
-        run: git add helm/atmos-weather/values.yaml && git diff --cached --check && (git diff --cached --quiet || git commit -m "gitops: deploy sha-${GITHUB_SHA}")
+        run: |
+          git add helm/atmos-weather/values.yaml
+          git diff --cached --check
+          git diff --cached --quiet || git commit -m "gitops: deploy sha-${GITHUB_SHA}"
 
       - name: Push desired state
         run: git push
