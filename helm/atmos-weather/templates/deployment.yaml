@@ -15,6 +15,18 @@ spec:
       labels:
         app: atmos-weather
 
+      {{- if .Values.vault.enabled }}
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/agent-pre-populate-only: "true"
+        vault.hashicorp.com/role: {{ .Values.vault.role | quote }}
+        vault.hashicorp.com/agent-inject-secret-flask-secret-key: {{ .Values.vault.secretPath | quote }}
+        vault.hashicorp.com/agent-inject-template-flask-secret-key: |
+          {{`{{- with secret "secret/data/atmos-weather" -}}`}}
+          {{`{{ .Data.data.flask_secret_key }}`}}
+          {{`{{- end }}`}}
+      {{- end }}
+
     spec:
       serviceAccountName: atmos-weather
 

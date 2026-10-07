@@ -1,0 +1,12 @@
+{
+  "bound_service_account_names": [
+    "vso-dockerhub"
+  ],
+  "bound_service_account_namespaces": [
+    "weather-lab"
+  ],
+  "policies": [
+    "dockerhub-pull"
+  ],
+  "ttl": "1h"
+}

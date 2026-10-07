@@ -1,0 +1,12 @@
+{
+  "bound_service_account_names": [
+    "atmos-weather"
+  ],
+  "bound_service_account_namespaces": [
+    "weather-lab"
+  ],
+  "policies": [
+    "atmos-weather"
+  ],
+  "ttl": "1h"
+}
