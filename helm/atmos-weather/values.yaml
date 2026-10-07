@@ -1,0 +1,19 @@
+replicaCount: 1
+
+image:
+  repository: ritchiekyin/atmos-weather
+  tag: "sha-4383818423f55f06e510ebb6ebb960b564f852d8"
+  pullPolicy: IfNotPresent
+
+imagePullSecret:
+  name: dockerhub-pull-manual
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+
+vault:
+  enabled: false
+  role: atmos-weather
+  secretPath: secret/data/atmos-weather
