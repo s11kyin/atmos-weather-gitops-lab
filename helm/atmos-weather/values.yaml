@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: ritchiekyin/atmos-weather
-  tag: "sha-973ff27e7066ba99e5b96724b8660a1d5c2a77ca"
+  tag: "sha-e31bfe29cdd79b9e0cdc80bf250fe3818798fe29"
   pullPolicy: IfNotPresent
 
 imagePullSecret:
