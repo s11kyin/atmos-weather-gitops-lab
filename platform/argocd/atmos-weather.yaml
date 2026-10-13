@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: atmos-weather
+  namespace: argocd
+
+spec:
+  project: atmos-weather-app
+
+  source:
+    repoURL: https://github.com/s11kyin/atmos-weather-gitops-lab.git
+    targetRevision: main
+    path: helm/atmos-weather
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: weather-lab
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      enabled: true
+    syncOptions:
+      - CreateNamespace=true
