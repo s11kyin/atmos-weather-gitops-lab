@@ -36,7 +36,7 @@ class WeatherAppTests(unittest.TestCase):
         mock_fetch.return_value = {
             "timezone": "America/Toronto",
             "timezone_abbreviation": "EDT",
-            "current": {"temperature_c": 21, "condition": "Clear sky", "theme": "clear"},
+            "current": {"temperature_c": 21, "condition": "Clear sky", "theme": "clear", "is_day": 1},
             "today": {"high_c": 24, "low_c": 14},
             "tomorrow": {"high_c": 22, "low_c": 13},
             "hourly": [],
@@ -47,6 +47,7 @@ class WeatherAppTests(unittest.TestCase):
         body = response.get_json()
         self.assertEqual(body["location"]["label"], "Toronto, Ontario, Canada")
         self.assertEqual(body["current"]["temperature_c"], 21)
+        self.assertEqual(body["current"]["is_day"], 1)
 
     def test_flash_report_for_gusts(self):
         current = {"temperature_c": 20, "apparent_temperature_c": 20, "wind_gusts_kmh": 62, "weather_code": 2}

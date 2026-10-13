@@ -80,6 +80,7 @@ function render(data) {
   const tomorrow = data.tomorrow || {};
 
   document.body.dataset.weatherTheme = current.theme || "cloud";
+  document.body.dataset.daylight = current.is_day === 0 ? "night" : "day";
   text("#location-name", data.location?.label);
   text("#observation-time", current.observed_at ? `Observed ${localTime(current.observed_at)}` : "Current reading");
   text("#timezone-chip", `${data.timezone_abbreviation || ""} ${data.timezone || ""}`.trim());
